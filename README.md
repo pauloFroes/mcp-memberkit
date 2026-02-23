@@ -12,7 +12,9 @@ MCP server that wraps the [Memberkit API](https://ajuda.memberkit.com.br/referen
 ### Claude Code
 
 ```bash
-claude mcp add mcp-memberkit -e MEMBERKIT_API_KEY=your_key -- npx -y @paulofroes/mcp-memberkit
+git clone https://github.com/paulofroes/mcp-memberkit.git ~/Desktop/mcp-memberkit
+cd ~/Desktop/mcp-memberkit && npm install
+claude mcp add mcp-memberkit -e MEMBERKIT_API_KEY=your_key -- node ~/Desktop/mcp-memberkit/build/index.js
 ```
 
 ### Claude Desktop
@@ -23,8 +25,8 @@ Add to your `claude_desktop_config.json`:
 {
   "mcpServers": {
     "memberkit": {
-      "command": "npx",
-      "args": ["-y", "@paulofroes/mcp-memberkit"],
+      "command": "node",
+      "args": ["<path-to>/mcp-memberkit/build/index.js"],
       "env": {
         "MEMBERKIT_API_KEY": "your_key"
       }
