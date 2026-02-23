@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Memberkit MCP Server" width="200" />
+</p>
+
 # Memberkit MCP Server
 
 MCP server that wraps the [Memberkit API](https://ajuda.memberkit.com.br/referencia-api/introducao) as semantic tools for LLM agents.
@@ -5,7 +9,7 @@ MCP server that wraps the [Memberkit API](https://ajuda.memberkit.com.br/referen
 ## Prerequisites
 
 - Node.js 18+
-- Memberkit API key ([get it from Settings in your Memberkit account](https://memberkit.com.br))
+- Memberkit API key (found at `/academy/edit` in your Memberkit admin panel)
 
 ## Installation
 
