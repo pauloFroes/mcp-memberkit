@@ -1,0 +1,43 @@
+{
+  "name": "@paulofroes/mcp-memberkit",
+  "version": "1.0.0",
+  "description": "MCP server that wraps the Memberkit API as semantic tools for LLM agents",
+  "type": "module",
+  "bin": {
+    "mcp-memberkit": "build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc && chmod 755 build/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "memberkit",
+    "claude",
+    "ai",
+    "llm",
+    "membership",
+    "courses"
+  ],
+  "author": "Paulo Froes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulofroes/mcp-memberkit.git"
+  },
+  "homepage": "https://github.com/paulofroes/mcp-memberkit#readme",
+  "bugs": {
+    "url": "https://github.com/paulofroes/mcp-memberkit/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.9.3"
+  }
+}
