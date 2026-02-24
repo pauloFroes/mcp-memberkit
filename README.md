@@ -17,54 +17,27 @@ Works with **Claude Code**, **Codex**, **Claude Desktop**, **Cursor**, **VS Code
 
 ## Installation
 
+```bash
+git clone https://github.com/paulofroes/mcp-memberkit.git
+cd mcp-memberkit && npm install
+```
+
 ### Claude Code
 
 ```bash
-claude mcp add memberkit \
-  --transport stdio \
-  -e MEMBERKIT_API_KEY=your_key \
-  -- npx -y @paulofroes/mcp-memberkit
+claude mcp add memberkit -e MEMBERKIT_API_KEY=your_key -- node /path/to/mcp-memberkit/build/index.js
 ```
 
-### Codex
+### Claude Desktop / Cursor / Windsurf
 
-Add to your Codex configuration:
-
-```toml
-[mcp_servers.memberkit]
-command = "npx"
-args = ["-y", "@paulofroes/mcp-memberkit"]
-env_vars = ["MEMBERKIT_API_KEY"]
-```
-
-### Claude Desktop
-
-Add to `claude_desktop_config.json`:
+Add to your MCP config file:
 
 ```json
 {
   "mcpServers": {
     "memberkit": {
-      "command": "npx",
-      "args": ["-y", "@paulofroes/mcp-memberkit"],
-      "env": {
-        "MEMBERKIT_API_KEY": "your_key"
-      }
-    }
-  }
-}
-```
-
-### Cursor
-
-Add to `~/.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "memberkit": {
-      "command": "npx",
-      "args": ["-y", "@paulofroes/mcp-memberkit"],
+      "command": "node",
+      "args": ["/path/to/mcp-memberkit/build/index.js"],
       "env": {
         "MEMBERKIT_API_KEY": "your_key"
       }
@@ -81,26 +54,8 @@ Add to `.vscode/mcp.json` in your project:
 {
   "servers": {
     "memberkit": {
-      "command": "npx",
-      "args": ["-y", "@paulofroes/mcp-memberkit"],
-      "env": {
-        "MEMBERKIT_API_KEY": "your_key"
-      }
-    }
-  }
-}
-```
-
-### Windsurf
-
-Add to `~/.codeium/windsurf/mcp_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "memberkit": {
-      "command": "npx",
-      "args": ["-y", "@paulofroes/mcp-memberkit"],
+      "command": "node",
+      "args": ["/path/to/mcp-memberkit/build/index.js"],
       "env": {
         "MEMBERKIT_API_KEY": "your_key"
       }
