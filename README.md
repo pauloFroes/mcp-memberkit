@@ -6,6 +6,10 @@
 
 MCP server that wraps the [Memberkit API](https://ajuda.memberkit.com.br/referencia-api/introducao) as semantic tools for LLM agents.
 
+Works with **Claude Code**, **Codex**, **Claude Desktop**, **Cursor**, **VS Code**, **Windsurf**, and any MCP-compatible client.
+
+---
+
 ## Prerequisites
 
 - Node.js 18+
@@ -16,21 +20,87 @@ MCP server that wraps the [Memberkit API](https://ajuda.memberkit.com.br/referen
 ### Claude Code
 
 ```bash
-git clone https://github.com/paulofroes/mcp-memberkit.git ~/Desktop/mcp-memberkit
-cd ~/Desktop/mcp-memberkit && npm install
-claude mcp add mcp-memberkit -e MEMBERKIT_API_KEY=your_key -- node ~/Desktop/mcp-memberkit/build/index.js
+claude mcp add memberkit \
+  --transport stdio \
+  -e MEMBERKIT_API_KEY=your_key \
+  -- npx -y @paulofroes/mcp-memberkit
+```
+
+### Codex
+
+Add to your Codex configuration:
+
+```toml
+[mcp_servers.memberkit]
+command = "npx"
+args = ["-y", "@paulofroes/mcp-memberkit"]
+env_vars = ["MEMBERKIT_API_KEY"]
 ```
 
 ### Claude Desktop
 
-Add to your `claude_desktop_config.json`:
+Add to `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "memberkit": {
-      "command": "node",
-      "args": ["<path-to>/mcp-memberkit/build/index.js"],
+      "command": "npx",
+      "args": ["-y", "@paulofroes/mcp-memberkit"],
+      "env": {
+        "MEMBERKIT_API_KEY": "your_key"
+      }
+    }
+  }
+}
+```
+
+### Cursor
+
+Add to `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "memberkit": {
+      "command": "npx",
+      "args": ["-y", "@paulofroes/mcp-memberkit"],
+      "env": {
+        "MEMBERKIT_API_KEY": "your_key"
+      }
+    }
+  }
+}
+```
+
+### VS Code
+
+Add to `.vscode/mcp.json` in your project:
+
+```json
+{
+  "servers": {
+    "memberkit": {
+      "command": "npx",
+      "args": ["-y", "@paulofroes/mcp-memberkit"],
+      "env": {
+        "MEMBERKIT_API_KEY": "your_key"
+      }
+    }
+  }
+}
+```
+
+### Windsurf
+
+Add to `~/.codeium/windsurf/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "memberkit": {
+      "command": "npx",
+      "args": ["-y", "@paulofroes/mcp-memberkit"],
       "env": {
         "MEMBERKIT_API_KEY": "your_key"
       }
