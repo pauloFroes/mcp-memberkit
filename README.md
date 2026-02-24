@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="Memberkit MCP Server" width="200" />
 </p>
 
-# Memberkit MCP Server
+# mcp-memberkit
 
 MCP server that wraps the [Memberkit API](https://ajuda.memberkit.com.br/referencia-api/introducao) as semantic tools for LLM agents.
 
@@ -15,29 +15,60 @@ Works with **Claude Code**, **Codex**, **Claude Desktop**, **Cursor**, **VS Code
 - Node.js 18+
 - Memberkit API key (found at `/academy/edit` in your Memberkit admin panel)
 
-## Installation
+| Variable           | Where to find                              |
+| ------------------ | ------------------------------------------ |
+| `MEMBERKIT_API_KEY` | API key field in `/academy/edit` (admin only) |
 
-```bash
-git clone https://github.com/paulofroes/mcp-memberkit.git
-cd mcp-memberkit && npm install
-```
+## Installation
 
 ### Claude Code
 
 ```bash
-claude mcp add memberkit -e MEMBERKIT_API_KEY=your_key -- node /path/to/mcp-memberkit/build/index.js
+claude mcp add memberkit \
+  --transport stdio \
+  -e MEMBERKIT_API_KEY=your_key \
+  -- npx -y github:pauloFroes/mcp-memberkit
 ```
 
-### Claude Desktop / Cursor / Windsurf
+### Codex
 
-Add to your MCP config file:
+Add to your Codex configuration:
+
+```toml
+[mcp_servers.memberkit]
+command = "npx"
+args = ["-y", "github:pauloFroes/mcp-memberkit"]
+env_vars = ["MEMBERKIT_API_KEY"]
+```
+
+### Claude Desktop
+
+Add to `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "memberkit": {
-      "command": "node",
-      "args": ["/path/to/mcp-memberkit/build/index.js"],
+      "command": "npx",
+      "args": ["-y", "github:pauloFroes/mcp-memberkit"],
+      "env": {
+        "MEMBERKIT_API_KEY": "your_key"
+      }
+    }
+  }
+}
+```
+
+### Cursor
+
+Add to `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "memberkit": {
+      "command": "npx",
+      "args": ["-y", "github:pauloFroes/mcp-memberkit"],
       "env": {
         "MEMBERKIT_API_KEY": "your_key"
       }
@@ -54,8 +85,26 @@ Add to `.vscode/mcp.json` in your project:
 {
   "servers": {
     "memberkit": {
-      "command": "node",
-      "args": ["/path/to/mcp-memberkit/build/index.js"],
+      "command": "npx",
+      "args": ["-y", "github:pauloFroes/mcp-memberkit"],
+      "env": {
+        "MEMBERKIT_API_KEY": "your_key"
+      }
+    }
+  }
+}
+```
+
+### Windsurf
+
+Add to `~/.codeium/windsurf/mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "memberkit": {
+      "command": "npx",
+      "args": ["-y", "github:pauloFroes/mcp-memberkit"],
       "env": {
         "MEMBERKIT_API_KEY": "your_key"
       }
