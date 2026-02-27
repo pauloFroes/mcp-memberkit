@@ -31,6 +31,8 @@ Three installation scopes are available:
 | **project** | `-s project` | `.claude/mcp.json` | Shared with team via git |
 | **user** | `-s user` | `~/.claude/mcp.json` | All your projects |
 
+**Quick setup (inline env vars):**
+
 ```bash
 claude mcp add memberkit -s user \
   -e MEMBERKIT_API_KEY=your_key \
@@ -38,6 +40,30 @@ claude mcp add memberkit -s user \
 ```
 
 > Replace `-s user` with `-s local` or `-s project` as needed.
+
+**Persistent setup (.env file):**
+
+Add to your `.mcp.json`:
+
+```json
+{
+  "memberkit": {
+    "command": "npx",
+    "args": ["-y", "github:pauloFroes/mcp-memberkit"],
+    "env": {
+      "MEMBERKIT_API_KEY": "${MEMBERKIT_API_KEY}"
+    }
+  }
+}
+```
+
+Then define the values in your `.env` file:
+
+```
+MEMBERKIT_API_KEY=your-api-key
+```
+
+> See `.env.example` for all required variables.
 
 ### Codex
 
